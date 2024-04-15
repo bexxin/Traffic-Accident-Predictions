@@ -99,8 +99,22 @@
             <option value="spilled liquid">Spilled Liquid</option>
             <option value="wet">Wet</option>
         </select>
+        
+        <Label for="latitude">Latitude</Label>
+        <input id="latitude" type="range" min="-90" max="90" step="0.1" name="latitudeInput"
+            oninput="latitudeOutput.value=latitude.value">
+        <output id="latitudeOutput">0</output>
+        <br>
+
+
+        <Label for="longitude">Longitude</Label>
+        <input id="longitude" type="range" min="-180" max="180" step="0.1" name="longitudeInput"
+            oninput="longitudeOutput.value=longitude.value">
+        <output id="longitudeOutput">0</output>
+        <br>
 
         <!--True False Inputs-->
+        <h2>Contributing Factors</h2>
         <div id="radio-div"></div>
         <div class="binary-option">
             <label for="pedestrian">Pedestrian:</label>
@@ -196,18 +210,6 @@
         </div>
 
 
-        <Label for="latitude">Latitude</Label>
-        <input id="latitude" type="range" min="-90" max="90" step="0.1" name="latitudeInput"
-            oninput="latitudeOutput.value=latitude.value">
-        <output id="latitudeOutput">0</output>
-        <br>
-
-
-        <Label for="longitude">Longitude</Label>
-        <input id="longitude" type="range" min="-180" max="180" step="0.1" name="longitudeInput"
-            oninput="longitudeOutput.value=longitude.value">
-        <output id="longitudeOutput">0</output>
-        <br>
         <Label for="Model Selection">Classifier Type</Label>
         <select id="classifier" name="classifier">
             <option value="lr">Logistic Regression</option>
