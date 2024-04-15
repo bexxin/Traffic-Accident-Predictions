@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+</head>
+
+<body>
+    <h1>Machine Learning Model Deployment</h1>
+
+    <form action="/result" method="post">
+
+        <!--<Label for="date">Select Date:</Label>
+        <input type="date" id="date" name="dateInput">
+        </input>-->
+
+        <Label for="time">Time</Label>
+        <input id="time" type="time" name="timeInput">
+        </input>
+        <br>
+        <Label for="roadClass">Road Class</Label>
+        <select id="roadClass" name="roadClass">
+            <option value="Collector">Collector</option>
+            <option value="Expressway">Expressway</option>
+            <option value="Express Ramp">Expressway Ramp</option>
+            <option value="Laneway">Laneway</option>
+            <option value="Local">Local</option>
+            <option value="Major Arterial">Major Artery</option>
+            <option value="Major Arterial Ramp">Major Arterial Ramp</option>
+            <option value="Minor Arterial">Minor Artery</option>
+            <option value="Other">Other</option>
+            <option value="Pending">Pending</option>
+        </select>
+        <br>
+
+        <Label for="locCoord">LOC_COORD</Label>
+        <select id="locCoord" name="locCoord">
+            <option value="Entrance Ramp Westbound">Entrance Ramp Westbound</option>
+            <option value="Exit Ramp Southbound">Exit Ramp Southbound</option>
+            <option value="Exit Ramp Westbound">Exit Ramp Westbound</option>
+            <option value="Intersection">Intersection</option>
+            <option value="Mid-Block">Mid-Block</option>
+            <option value="Mid-Block (abnormal)">Mid-Block (abnormal)</option>
+            <option value="Park,Private Property, Public Lane">Park, Private Property, Public Lane</option>
+        </select>
+        <br>
+
+        <Label for="traffctl">Traffic Control</Label>
+        <select id="traffctl" name="traffctl">
+            <option value="no control">No Control</option>
+            <option value="pedestrian crossover">Pedestrian Crossover</option>
+            <option value="police control">Police Control</option>
+            <option value="stop sign">Stop Sign</option>
+            <option value="streetcar">Streetcar (stop for)</option>
+            <option value="traffic controller">Traffic Controller</option>
+            <option value="traffic gate">Traffic Gate</option>
+            <option value="traffic signal">Traffic Signal</option>
+            <option value="yield sign">Yield Sign</option>
+        </select>
+        <br>
+
+        <Label for="visibility">Visibility</Label>
+        <select id="visibility" name="visibility">
+            <option value="clear">Clear</option>
+            <option value="drifting snow">Drifting Snow</option>
+            <option value="fog, mist, smoke, dust">Fog, Mist, Smoke, Dust</option>
+            <option value="freezing rain">Freezing Rain</option>
+            <option value="other">Other</option>
+            <option value="rain">Rain</option>
+            <option value="snow">Snow</option>
+            <option value="strong wind">Strong Wind</option>
+        </select>
+        <br>
+        <Label for="light">Light</Label>
+        <select id="light" name="light">
+            <option value="dark">Dark</option>
+            <option value="dark, artificial">Dark, artificial</option>
+            <option value="dawn">Dawn</option>
+            <option value="dawn, artificial">Dawn, artificial</option>
+            <option value="daylight">Daylight</option>
+            <option value="daylight, artificial">Daylight, artificial</option>
+            <option value="dusk">Dusk</option>
+            <option value="dusk, artificial">Dusk, artificial</option>
+            <option value="other">Other</option>
+        </select>
+
+        <Label for="RDSFCOND">Road Surface Condition</Label>
+        <select id="RDSFCOND" name="surface-condition">
+            <option value="dry">Dry</option>
+            <option value="ice">Ice</option>
+            <option value="loose sand or gravel">Loose sand or gravel</option>
+            <option value="loose snow">Loose Snow</option>
+            <option value="other">Other</option>
+            <option value="packed snow">Packed Snow</option>
+            <option value="slush">Slush</option>
+            <option value="spilled liquid">Spilled Liquid</option>
+            <option value="wet">Wet</option>
+        </select>
+
+        <!--True False Inputs-->
+        <div id="radio-div"></div>
+        <div class="binary-option">
+            <label for="pedestrian">Pedestrian:</label>
+            <input type="radio" id="pedestrian_false" name="pedestrian" value="false" checked>
+            <label for="pedestrian_false">False</label>
+            <input type="radio" id="pedestrian_true" name="pedestrian" value="true">
+            <label for="option1_true">True</label>
+            <br>
+        </div>
+
+        <div class="binary-option">
+            <label for="cyclist">Cyclist:</label>
+            <input type="radio" id="cyclist_false" name="cyclist" value="false" checked>
+            <label for="cyclist_false">False</label>
+            <input type="radio" id="cyclist_true" name="cyclist" value="true">
+            <label for="cyclist_true">True</label>
+            <br>
+        </div>
+
+        <div class="binary-option">
+            <label for="motorcycle">Motorcycle:</label>
+            <input type="radio" id="motorcycle_false" name="motorcycle" value="false" checked>
+            <label for="motorcycle_false">False</label>
+            <input type="radio" id="motorcycle_true" name="motorcycle" value="true">
+            <label for="motorcycle_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+
+            <label for="truck">Truck:</label>
+            <input type="radio" id="truck_false" name="truck" value="false" checked>
+            <label for="truck_false">False</label>
+            <input type="radio" id="truck_true" name="truck" value="true">
+            <label for="truck_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="trsn_city_veh">Transit City Vehicle:</label>
+            <input type="radio" id="trsn_city_veh_false" name="trsn_city_veh" value="false" checked>
+            <label for="trsn_city_veh_false">False</label>
+            <input type="radio" id="trsn_city_veh_true" name="trsn_city_veh" value="true">
+            <label for="trsn_city_veh_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="emerg_veh">Emergency Vehicle:</label>
+            <input type="radio" id="emerg_veh_false" name="emerg_veh" value="false" checked>
+            <label for="emerg_veh_false">False</label>
+            <input type="radio" id="emerg_veh_true" name="emerg_veh" value="true">
+            <label for="emerg_veh_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="speeding">Speeding:</label>
+            <input type="radio" id="speeding_false" name="speeding" value="false" checked>
+            <label for="speeding_false">False</label>
+            <input type="radio" id="speeding_true" name="speeding" value="true">
+            <label for="speeding_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="ag_drive">Aggressive Driving:</label>
+            <input type="radio" id="ag_drive_false" name="ag_drive" value="false" checked>
+            <label for="ag_drive_false">False</label>
+            <input type="radio" id="ag_drive_true" name="ag_drive" value="true">
+            <label for="ag_drive_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="red_light">Red Light:</label>
+            <input type="radio" id="red_light_false" name="red_light" value="false" checked>
+            <label for="red_light_false">False</label>
+            <input type="radio" id="red_light_true" name="red_light" value="true">
+            <label for="red_light_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="alcohol">Alcohol:</label>
+            <input type="radio" id="alcohol_false" name="alcohol" value="false" checked>
+            <label for="alcohol_false">False</label>
+            <input type="radio" id="alcohol_true" name="alcohol" value="true">
+            <label for="alcohol_true">True</label>
+            <br>
+        </div>
+        <div class="binary-option">
+            <label for="disability">Disability:</label>
+            <input type="radio" id="disability_false" name="disability" value="false" checked>
+            <label for="disability_false">False</label>
+            <input type="radio" id="disability_true" name="disability" value="true">
+            <label for="disability_true">True</label>
+            <br>
+        </div>
+        </div>
+
+
+        <Label for="latitude">Latitude</Label>
+        <input id="latitude" type="range" min="-90" max="90" step="0.1" name="latitudeInput"
+            oninput="latitudeOutput.value=latitude.value">
+        <output id="latitudeOutput">0</output>
+        <br>
+
+
+        <Label for="longitude">Longitude</Label>
+        <input id="longitude" type="range" min="-180" max="180" step="0.1" name="longitudeInput"
+            oninput="longitudeOutput.value=longitude.value">
+        <output id="longitudeOutput">0</output>
+        <br>
+        <Label for="Model Selection">Classifier Type</Label>
+        <select id="classifier" name="classifier">
+            <option value="lr">Logistic Regression</option>
+            <option value="dt">Decision Tree Classifier</option>
+            <option value="svm">Support Vector Machine</option>
+            <option value="rf">Random Forest</option>
+            <option value="nn">Neural Network</option>
+        </select>
+        <br>
+
+        <input type="submit" value="Predict">
+        <input type="reset" value="Reset">
+
+    </form>
+
+</body>
+
+</html>
