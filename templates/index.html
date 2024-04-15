@@ -9,6 +9,10 @@
 </head>
 
 <body>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+
     <h1>Machine Learning Model Deployment</h1>
 
     <form action="/result" method="post">
@@ -208,6 +212,7 @@
             <br>
         </div>
         </div>
+        <br>
 
 
         <Label for="Model Selection">Classifier Type</Label>
@@ -224,7 +229,7 @@
         <input type="reset" value="Reset">
 
     </form>
-
+  
 </body>
 
 </html>

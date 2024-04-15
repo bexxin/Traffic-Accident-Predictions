@@ -64,4 +64,9 @@ input[type="reset"]:hover {
     align-items:flex-start;
     margin-bottom:10px;
 }
+.error{
+    text-align:center;
+    color:red;
+    padding:10px;
+}
 

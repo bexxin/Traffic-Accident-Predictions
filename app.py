@@ -6,7 +6,7 @@ Created on Thu Feb 15 10:59:35 2024
 """
 #Removed date fields
 
-from flask import Flask, request, render_template
+from flask import Flask, flash, redirect, request, render_template
 import joblib
 import pandas as pd
 import numpy as np
@@ -36,6 +36,10 @@ def result():
    #get values from form
     #date_input=request.form.get("dateInput")
     time_input=request.form.get("timeInput")
+    #ensure time input is provided
+    if not time_input:
+        return render_template("index.html", error="Please select a time value.")
+
     ROAD_CLASS=request.form.get("roadClass")
     LATITUDE=float(request.form.get("latitudeInput"))
     LONGITUDE=float(request.form.get("longitudeInput"))
